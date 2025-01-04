@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  web:
+    container_name: knowledge-graph-app
+    build: .
+    ports:
+      - "4173:4173"
+    environment:
+      - NODE_ENV=production
