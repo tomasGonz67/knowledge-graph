@@ -12,6 +12,17 @@ The Knowledge Graph project focuses on representing historical and literary enti
 - **Knowledge Graph Manager**: This feature allows users to upload documents and links, which are processed to extract relevant entities and relationships, enriching the knowledge graph.
 - **Responsive Design**: Built with Tailwind CSS, the application is designed to be user-friendly and accessible on various devices.
 
+### Claude links
+This is the main dashboard: https://claude.site/artifacts/2965a502-1e43-4865-a42a-b7b30376dece
+
+This is the menu of the knowledge graph: https://claude.ai/chat/21060bd3-ab64-4f4c-826d-ea8366834b37
+
+If the graph has data then the user would see the graph itself as the main view: https://claude.site/artifacts/b7ba10cd-0a2e-4a73-be24-51ffe0265c00
+
+This would be the main view if the graph: https://claude.ai/chat/21060bd3-ab64-4f4c-826d-ea8366834b37
+
+This would be the entity detail view: https://claude.site/artifacts/d0495c57-113f-4b55-b72b-b0d72091dc14
+
 ## Features
 - **3D Graph Visualization**: Interactive representation of entities and their relationships.
 - **Entity Analysis Dashboard**: Detailed insights into individual entities.
