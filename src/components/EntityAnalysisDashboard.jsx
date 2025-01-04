@@ -10,8 +10,9 @@ import {
   Edit,
   Plus,
   X,
-  Network
+  Network,
 } from "lucide-react";
+import Navbar from "./Navbar";
 
 export default function EntityAnalysisDashboard() {
   const [selectedTab, setSelectedTab] = useState("summary");
@@ -21,7 +22,7 @@ export default function EntityAnalysisDashboard() {
     currentName: "Nebjeriket Djoser",
     aliases: [
       { name: "Djoser", source: "Contemporary inscriptions", confidence: 0.95 },
-      { name: "Zoser", source: "Greek translations", confidence: 0.85 }
+      { name: "Zoser", source: "Greek translations", confidence: 0.85 },
     ],
     title: "Pharaoh",
     period: "Old Kingdom",
@@ -30,7 +31,7 @@ export default function EntityAnalysisDashboard() {
       { text: "Son of King Khas Akemwi", confidence: 0.95 },
       { text: "Began the period known as the Old Kingdom", confidence: 0.9 },
       { text: "Moved capital to Memphis", confidence: 0.95 },
-      { text: "Built the stepped pyramid at Saqqara", confidence: 0.98 }
+      { text: "Built the stepped pyramid at Saqqara", confidence: 0.98 },
     ],
     knowledgeGraph: {
       nodes: [
@@ -38,16 +39,16 @@ export default function EntityAnalysisDashboard() {
         { id: 2, label: "Khas Akemwi", type: "person" },
         { id: 3, label: "Imhotep", type: "person" },
         { id: 4, label: "Stepped Pyramid", type: "structure" },
-        { id: 5, label: "Memphis", type: "location" }
+        { id: 5, label: "Memphis", type: "location" },
       ],
       edges: [
         { from: 1, to: 2, label: "son of", confidence: 0.95 },
         { from: 1, to: 3, label: "employed", confidence: 0.92 },
         { from: 1, to: 4, label: "commissioned", confidence: 0.98 },
         { from: 3, to: 4, label: "designed", confidence: 0.95 },
-        { from: 1, to: 5, label: "ruled from", confidence: 0.9 }
-      ]
-    }
+        { from: 1, to: 5, label: "ruled from", confidence: 0.9 },
+      ],
+    },
   };
 
   const tabs = [
@@ -55,7 +56,7 @@ export default function EntityAnalysisDashboard() {
     { id: "aliases", label: "Aliases", Icon: Plus },
     { id: "timeline", label: "Timeline", Icon: History },
     { id: "graph", label: "Knowledge Graph", Icon: Network },
-    { id: "audit", label: "Audit Trail", Icon: AlertTriangle }
+    { id: "audit", label: "Audit Trail", Icon: AlertTriangle },
   ];
 
   function renderSummary() {
@@ -86,7 +87,8 @@ export default function EntityAnalysisDashboard() {
                 <span className="text-gray-600">Title:</span> {entityData.title}
               </div>
               <div className="p-2 bg-gray-50 rounded">
-                <span className="text-gray-600">Period:</span> {entityData.period}
+                <span className="text-gray-600">Period:</span>{" "}
+                {entityData.period}
               </div>
               <div className="p-2 bg-gray-50 rounded">
                 <span className="text-gray-600">Reign:</span> {entityData.reign}
@@ -108,7 +110,9 @@ export default function EntityAnalysisDashboard() {
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-semibold text-lg">{alias.name}</h3>
-                  <p className="text-sm text-gray-600">Source: {alias.source}</p>
+                  <p className="text-sm text-gray-600">
+                    Source: {alias.source}
+                  </p>
                 </div>
                 <span
                   className={`px-2 py-1 rounded text-sm ${
@@ -134,11 +138,12 @@ export default function EntityAnalysisDashboard() {
 
     const nodePositions = {};
     entityData.knowledgeGraph.nodes.forEach((node, index) => {
-      const angle = (index / entityData.knowledgeGraph.nodes.length) * 2 * Math.PI;
+      const angle =
+        (index / entityData.knowledgeGraph.nodes.length) * 2 * Math.PI;
       const radius = node.type === "mainEntity" ? 0 : 200;
       nodePositions[node.id] = {
         x: width / 2 + Math.cos(angle) * radius,
-        y: height / 2 + Math.sin(angle) * radius
+        y: height / 2 + Math.sin(angle) * radius,
       };
     });
 
@@ -179,9 +184,14 @@ export default function EntityAnalysisDashboard() {
             {entityData.knowledgeGraph.nodes.map((node) => {
               const pos = nodePositions[node.id];
               return (
-                <g key={`node-${node.id}`} transform={`translate(${pos.x},${pos.y})`}>
+                <g
+                  key={`node-${node.id}`}
+                  transform={`translate(${pos.x},${pos.y})`}
+                >
                   <circle
-                    r={node.type === "mainEntity" ? nodeRadius * 1.2 : nodeRadius}
+                    r={
+                      node.type === "mainEntity" ? nodeRadius * 1.2 : nodeRadius
+                    }
                     fill={
                       node.type === "mainEntity"
                         ? "#8884d8"
@@ -246,7 +256,9 @@ export default function EntityAnalysisDashboard() {
   function renderAudit() {
     return (
       <div className="border p-4 rounded-md col-span-2">
-        <h2 className="font-bold text-lg mb-4">Information Extraction Audit Trail</h2>
+        <h2 className="font-bold text-lg mb-4">
+          Information Extraction Audit Trail
+        </h2>
         <div className="space-y-6">
           {entityData.facts.map((fact, idx) => (
             <div key={idx} className="border-l-4 border-blue-500 pl-4 py-2">
@@ -290,43 +302,49 @@ export default function EntityAnalysisDashboard() {
   }
 
   return (
-    <div className="p-4 space-y-4">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">{entityData.currentName}</h1>
-          <p className="text-gray-600">
-            {entityData.aliases.length} known name variations • {entityData.reign}
-          </p>
+    <div>
+      <Navbar />
+      <div className="p-4 space-y-4">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h1 className="text-3xl font-bold mb-2">
+              {entityData.currentName}
+            </h1>
+            <p className="text-gray-600">
+              {entityData.aliases.length} known name variations •{" "}
+              {entityData.reign}
+            </p>
+          </div>
+          <div className="flex flex-col items-end gap-2">
+            <span className="px-3 py-1 bg-purple-100 rounded-full text-purple-800 font-medium">
+              {entityData.title}
+            </span>
+            <span className="px-3 py-1 bg-blue-100 rounded-full text-blue-800 font-medium">
+              {entityData.period}
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col items-end gap-2">
-          <span className="px-3 py-1 bg-purple-100 rounded-full text-purple-800 font-medium">
-            {entityData.title}
-          </span>
-          <span className="px-3 py-1 bg-blue-100 rounded-full text-blue-800 font-medium">
-            {entityData.period}
-          </span>
+
+        <div className="flex gap-4 border-b mb-4">
+          {tabs.map(({ id, label, Icon }) => (
+            <button
+              key={id}
+              className={`flex items-center gap-2 pb-2 px-3 ${
+                selectedTab === id
+                  ? "border-b-2 border-blue-500 text-blue-600 font-medium"
+                  : "text-gray-600"
+              }`}
+              onClick={() => setSelectedTab(id)}
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </button>
+          ))}
         </div>
-      </div>
 
-      <div className="flex gap-4 border-b mb-4">
-        {tabs.map(({ id, label, Icon }) => (
-          <button
-            key={id}
-            className={`flex items-center gap-2 pb-2 px-3 ${
-              selectedTab === id
-                ? "border-b-2 border-blue-500 text-blue-600 font-medium"
-                : "text-gray-600"
-            }`}
-            onClick={() => setSelectedTab(id)}
-          >
-            <Icon className="h-4 w-4" />
-            {label}
-          </button>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {renderContent()}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );
