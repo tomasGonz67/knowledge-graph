@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,11 +18,11 @@ const Signup = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <div className="mb-4">
-          <Link to="/" className="text-blue-600 hover:underline">
-            <img src="/path/to/home-icon.png" alt="Home" className="w-6 h-6 inline-block" />
-          </Link>
-        </div>
+      <div className="mb-4">
+        <Link to="/" className="text-blue-600 hover:underline">
+          <h1 className="text-4xl font-bold mb-8">Welcome to Gutenberg</h1>
+        </Link>
+      </div>
       <h1 className="text-3xl font-bold mb-6">Sign Up</h1>
       <form
         className="bg-white p-6 rounded shadow-md w-80"

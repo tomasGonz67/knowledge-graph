@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ const Login = () => {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <div className="mb-4">
           <Link to="/" className="text-blue-600 hover:underline">
-            <img src="/path/to/home-icon.png" alt="Home" className="w-6 h-6 inline-block" />
+            <h1 className="text-4xl font-bold mb-8">Welcome to Gutenberg</h1>
           </Link>
         </div>
         <h1 className="text-3xl font-bold mb-6">Login</h1>
@@ -70,13 +70,10 @@ const Login = () => {
               Login
             </button>
             <Link to="/dashboard" className="text-blue-600 hover:underline">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              
-            >
-              Go to Dashboard
-            </button>
-          </Link>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Go to Dashboard
+              </button>
+            </Link>
           </div>
         </form>
       </div>
